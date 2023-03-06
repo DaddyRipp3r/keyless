@@ -1,7 +1,7 @@
 local scriptver = "Keyless"
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Ripp3rs Hub ┃ ".. scriptver, HidePremium = true, SaveConfig = true, ConfigFolder = "Ripp3rs Hub", IntroText = "Ripp3rs Hub", IntroIcon = "https://i.e-z.host/nbo558hv.png"})
+local Window = OrionLib:MakeWindow({Name = "Ripp3rs Hub ┃ ".. scriptver, HidePremium = true, SaveConfig = true, ConfigFolder = "Ripp3rs Hub Keyless", IntroText = "Ripp3rs Hub", IntroIcon = "https://i.e-z.host/nbo558hv.png"})
 
 local Tab = Window:MakeTab({
     Name = "Player",
