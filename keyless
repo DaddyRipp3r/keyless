@@ -686,3 +686,81 @@ local Tab = Window:MakeTab({
 })
 Tab:AddLabel("Daddy Ripp3r#0001 - owner/coder")
 Tab:AddLabel("kermit the frog#6253 - cool guy")
+
+local Ab = AutoBuy:section('Auto Buy',true)
+
+Ab:Slider('Ammount To Buy', 'SliderVal', 1, 1, 500,false, function(Value)
+  AmountToBuy = Value
+end)
+AmountToBuy = 1
+
+Ab:Dropdown("Select Item", 'Dropdownval',ItemList, function(Value)
+  ItemToBuy = Value
+end)
+
+local Pi = AutoBuy:section('Purchace Item',true)
+
+Pi:Button('Buy', function()
+  if not CheckIfWPPlaced() then return end
+  
+  
+  if ItemToBuy then               
+      CuttingTree = true
+      local OldCharacterPos = GetChar().Head.CFrame
+      BuyItem(string.split(ItemToBuy, "--")[1],AmountToBuy,GetWPLoc())
+      CuttingTree = true
+      IsStandingAPlank = true
+      GetChar():SetPrimaryPartCFrame(OldCharacterPos)
+  else
+      game.StarterGui:SetCore("SendNotification", {
+          Title = "Error";
+          Text = "Please select an item to buy";
+          Duration = 5;
+      })
+  end  
+end)
+
+Pi:Button('Stop', function()
+  AbortAutoBuy=true
+end)
+
+local Si = AutoBuy:section('Special Item',true)
+
+Si:Button('Gold Blueprint', function()
+  Pay(3)
+end)
+
+Si:Button('Lower Bridge', function()
+  Pay(15)
+end)
+
+Si:Button('Ferry Ticket', function()
+  Pay(13)
+end)
+
+Si:Button('Auto Buy All Blueprint', function()
+  local open = game.Workspace.PlayerModels.ChildAdded:connect(function(v)
+    spawn(function()
+        if v.Type.Value == "Blueprint" then
+            game:GetService("ReplicatedStorage").Interaction.ClientInteracted:FireServer(v, "Open box")
+        end
+    end)
+
+end)
+
+for i, v in pairs(game:GetService("ReplicatedStorage").ClientItemInfo:GetChildren()) do
+if v:FindFirstChild("WoodCost") then
+
+        if not game.Players.LocalPlayer.PlayerBlueprints.Blueprints:FindFirstChild(v.Name) then
+          if AbortAutoBuy then break end
+            BuyItem(v.Name, 1)
+         task.wait()
+        end
+
+    end
+
+end
+wait(1)
+open:Disconnect();
+open = nil;
+end)
