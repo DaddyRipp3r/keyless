@@ -1,7 +1,7 @@
 local scriptver = "Keyless"
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Ripp3rs Hub ┃ ".. scriptver, HidePremium = true, SaveConfig = true, ConfigFolder = "Ripp3rs Hub", IntroText = "Ripp3rs Hub", IntroIcon = "https://i.e-z.host/nbo558hv.png"})
+local Window = OrionLib:MakeWindow({Name = "Ripp3rs-hub ┃ ".. scriptver, HidePremium = true, SaveConfig = true, ConfigFolder = "Ripp3r", IntroText = "Ripp3rs-Hub", IntroIcon = "https://i.e-z.host/nbo558hv.png"})
 
 local Tab = Window:MakeTab({
     Name = "Player",
@@ -82,7 +82,6 @@ Tab:AddToggle({
             toggleNoClip()
             end
 end})
-
 
 
 Tab:AddToggle({
@@ -254,6 +253,7 @@ Tab:AddToggle({
 })
 
 
+
         
 
 
@@ -277,7 +277,6 @@ Tab:AddButton({
         game.Workspace.Camera.FieldOfView = 70
   	end    
 })
-
 
 
 local Tab = Window:MakeTab({
@@ -666,6 +665,20 @@ end
 end)
 
 local Tab = Window:MakeTab({
+	Name = "Gui-Settings",
+	Icon = "rbxassetid://",
+	PremiumOnly = false
+})
+
+Tab:AddColorpicker({
+	Name = "Colorpicker",
+	Default = Color3.fromRGB(255, 0, 0),
+	Callback = function(Value)
+		print(Value)
+	end	  
+})
+
+local Tab = Window:MakeTab({
 	Name = "Credits",
 	Icon = "rbxassetid://",
 	PremiumOnly = false
@@ -673,3 +686,83 @@ local Tab = Window:MakeTab({
 Tab:AddLabel("Daddy Ripp3r#0001 - owner/coder")
 Tab:AddLabel("kermit the frog#6253 - cool guy")
 Tab:AddLabel("Applebox#0001 - Key System")
+
+local Tab = Window:MakeTab({
+	Name = "Wood",
+	Icon = "rbxassetid://",
+	PremiumOnly = false
+})
+
+Tab:AddToggle({
+	Name = "Wood Esp (work in progress)",
+	Default = false,
+	Callback = function(Value)
+
+        OrionLib:MakeNotification({
+            Name = "Wood Esp",
+            Content = "Enabled Wood Esp",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+
+		local UIS = game:GetService("UserInputService")
+local Toggle = false
+
+for i,v in pairs(workspace.PlayerModels:GetChildren()) do
+    if v.Name == "Plank" and v:FindFirstChild("Owner").OwnerString.Value == game.Players.LocalPlayer.Name then
+        local WoodSection = v:FindFirstChild("WoodSection")
+        for i=0,5 do
+            local SurfaceGui = Instance.new("SurfaceGui")
+            local Frame = Instance.new("Frame")
+            SurfaceGui.Face = i
+            SurfaceGui.Enabled = false
+            SurfaceGui.Name = v.TreeClass.Value..i
+            Frame.BorderSizePixel = 0
+            Frame.Size = UDim2.new(1,0,1,0)
+            Frame.BackgroundColor3 = WoodSection.Color
+            SurfaceGui.AlwaysOnTop = true
+            SurfaceGui.LightInfluence = 0
+            SurfaceGui.Parent = WoodSection
+            Frame.Parent = SurfaceGui
+        end
+    end
+end
+
+UIS.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.X then
+        if Toggle == false then
+            for i,v in pairs(workspace.PlayerModels:GetChildren()) do
+                if v.Name == "Plank" then
+                    for i=0,5 do
+                        local TreeClass = v.TreeClass.Value
+                        if v:FindFirstChild("WoodSection")[TreeClass..i] then
+                            v.WoodSection[TreeClass..i].Enabled = true
+                        end
+                    end
+                end
+            end
+            Toggle = true
+        else
+            for i,v in pairs(workspace.PlayerModels:GetChildren()) do
+                if v.Name == "Plank" then
+                    for i=0,5 do
+                        local TreeClass = v.TreeClass.Value
+                        if v:FindFirstChild("WoodSection")[TreeClass..i] then
+                            v.WoodSection[TreeClass..i].Enabled = false
+                        end
+                    end
+                end
+            end
+            Toggle = false
+        end
+    end
+end)
+	end    
+})
+
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+wait(1)
+vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
