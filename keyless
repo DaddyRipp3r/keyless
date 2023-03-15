@@ -685,7 +685,6 @@ local Tab = Window:MakeTab({
 })
 Tab:AddLabel("Daddy Ripp3r#0001 - owner/coder")
 Tab:AddLabel("kermit the frog#6253 - cool guy")
-Tab:AddLabel("Applebox#0001 - Key System")
 
 local Tab = Window:MakeTab({
 	Name = "Wood",
