@@ -1,7 +1,7 @@
 local scriptver = "Keyless"
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Ripp3rs Hub ┃ ".. scriptver, HidePremium = true, SaveConfig = true, ConfigFolder = "Ripp3rs Hub", IntroText = "Ripp3rs Hub", IntroIcon = "https://i.e-z.host/nbo558hv.png"})
+local Window = OrionLib:MakeWindow({Name = "Ripp3rs Hub ┃ ".. scriptver, HidePremium = true, SaveConfig = true, ConfigFolder = "Ripp3rs Hub Keyless", IntroText = "Ripp3rs Hub", IntroIcon = "https://i.e-z.host/nbo558hv.png"})
 
 local Tab = Window:MakeTab({
     Name = "Player",
@@ -234,7 +234,7 @@ Tab:AddButton({
 	Name = "Start manual dupe",
 	Callback = function()
         OrionLib:MakeNotification({
-            Name = "Ripp3rs Hub",
+            Name = "S409HUB",
             Content = 'Once on the loading screen press "Max land dupe step 2".',
             Image = "rbxassetid://12576176007",
             Time = 5
@@ -249,7 +249,7 @@ Tab:AddButton({
 	Name = "Manual dupe step 2",
 	Callback = function()
         OrionLib:MakeNotification({
-            Name = "Ripp3rs Hub",
+            Name = "S409HUB",
             Content = 'Please now load your plot and press Max land dupe step 3".',
             Image = "rbxassetid://12576176007",
             Time = 5
@@ -304,7 +304,7 @@ Tab:AddButton({
         local slot_id = game:GetService("Players")["LocalPlayer"]["CurrentSaveSlot"].Value
         result = game.ReplicatedStorage.LoadSaveRequests.RequestSave:InvokeServer(slot_id, game.Players.LocalPlayer)
         OrionLib:MakeNotification({
-            Name = "Ripp3rs Hub",
+            Name = "S409HUB",
             Content = "Slot saved.",
             Image = "rbxassetid://12576176007",
             Time = 5
